@@ -27,11 +27,11 @@ class GreaterDandenongScraper(BaseScraper):
         meeting_soup = BeautifulSoup(meeting_html, "html.parser")
 
         # Extract variables
-        name = meeting_soup.find("h1").text
+        name = meeting_soup.find("h1").text.strip()
+        print(name)
         date_str = re.search(self.date_regex, name).group()
         download_a = meeting_soup.find("div", class_="file--mime-application-pdf").find("a")
         download_url = download_a["href"]
-
         
         return ScraperReturn(
             name = name,
