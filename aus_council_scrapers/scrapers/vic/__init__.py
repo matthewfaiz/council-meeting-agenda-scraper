@@ -10,13 +10,13 @@ from aus_council_scrapers.scrapers.vic.port_phillip import PortPhilipScraper
 from aus_council_scrapers.scrapers.vic.whitehorse import WhitehorseScraper
 from aus_council_scrapers.scrapers.vic.yarra import YarraScraper
 from aus_council_scrapers.scrapers.vic.hobsons_bay import HobsonsBayScraper
+from aus_council_scrapers.scrapers.vic.stonnington import StonningtonScraper
 
 # BROKEN SCRAPERS
 # from council_scrapers.scrapers.vic.banyule import BanyuleScraper
 # from council_scrapers.scrapers.vic.maribyrnong import MaribyrnongScraper
 
 # UNIMPLEMENTED SCRAPERS
-# from council_scrapers.scrapers.vic.stonnington import StonningtonScraper
 # from council_scrapers.scrapers.vic.manningham import ManninghamScraper
 # from council_scrapers.scrapers.vic.monash import MonashScraper
 # from council_scrapers.scrapers.vic.kingston import KingstonScraper

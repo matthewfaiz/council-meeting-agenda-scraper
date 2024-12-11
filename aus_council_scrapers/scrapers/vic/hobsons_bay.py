@@ -45,7 +45,7 @@ class HobsonsBayScraper(BaseScraper):
         for element in elements:
             driver.execute_script("arguments[0].click();", element)
 
-        wait = WebDriverWait(driver, 5)
+        wait = WebDriverWait(driver, 15)
         wait.until(
             EC.presence_of_element_located(
                 (By.CSS_SELECTOR, ".accordion-list-item-container .initialised")
