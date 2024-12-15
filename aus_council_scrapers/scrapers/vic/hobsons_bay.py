@@ -60,7 +60,7 @@ class HobsonsBayScraper(BaseScraper):
         meetings = soup.find_all("div", class_="accordion-list-item-container")
 
         for meeting in meetings:
-            document_link = meeting.find("a", class_="document")["href"]
+            document_link = meeting.find("a", class_="document")
             if not document_link:
                 continue
             
@@ -75,7 +75,7 @@ class HobsonsBayScraper(BaseScraper):
                 meeting_time = time_match.group()
                 print(meeting_time)
             
-            download_url = self.base_url + document_link
+            download_url = self.base_url + document_link["href"]
             print(download_url)
             break
 

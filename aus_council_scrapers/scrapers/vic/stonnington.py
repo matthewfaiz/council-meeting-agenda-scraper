@@ -61,7 +61,7 @@ class StonningtonScraper(BaseScraper):
         # Extract variables from first meeting on the page
 
         for meeting in meetings:
-            document_link = meeting.find("a", class_="document")["href"]
+            document_link = meeting.find("a", class_="document")
             if not document_link:
                 continue
 
@@ -73,7 +73,7 @@ class StonningtonScraper(BaseScraper):
                 meeting_time = time_match.group()
                 print(meeting_time)
             
-            download_url = self.base_url + document_link
+            download_url = self.base_url + document_link["href"]
             print(download_url)
             break
 
