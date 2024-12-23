@@ -27,11 +27,6 @@ class BanyuleScraper(BaseScraper):
         chrome_options.add_argument("--headless")
         driver = webdriver.Chrome(options=chrome_options)
 
-        name = None
-        date = None
-        time = None
-        download_url = None
-
         driver.get(self.webpage_url)
 
         # Reload the page, as the first time we visit javascript does not get loaded
@@ -43,7 +38,7 @@ class BanyuleScraper(BaseScraper):
             "Array.from(document.getElementsByClassName('accordion-trigger')).forEach(e => e.click())"
         )
 
-        wait = WebDriverWait(driver, 5)
+        wait = WebDriverWait(driver, 15)
         wait.until(
             EC.presence_of_element_located(
                 (By.CSS_SELECTOR, ".accordion-list-item-container .initialised")
@@ -55,7 +50,41 @@ class BanyuleScraper(BaseScraper):
 
         # Get the HTML
         output = driver.page_source
+
+        soup = self.html_soup(output)
+     
+        while not soup:
+            button = driver.find_element(By.LINK_TEXT, "Next")
+            if button:
+                driver.execute_script("arguments[0].click()", button)
+                driver.refresh()
+                driver.execute_script(
+                    "Array.from(document.getElementsByClassName('accordion-trigger')).forEach(e => e.click())"
+                )
+                wait.until(
+                    EC.presence_of_element_located(
+                        (By.CSS_SELECTOR, ".accordion-list-item-container .initialised")
+                    )
+                )       
+                driver.implicitly_wait(2)
+                output = driver.page_source
+                soup = self.html_soup(output)
+            else:
+                driver.quit()
+                print("Agenda not found")
+                return None
+
         driver.quit()
+        print(soup.download_url)
+        return soup
+
+
+    def html_soup(self, output) -> ScraperReturn | None:
+        
+        name = None
+        date = None
+        time = None
+        download_url = None
 
         # Feed the HTML to BeautifulSoup
         initial_soup = BeautifulSoup(output, "html.parser")
@@ -68,34 +97,34 @@ class BanyuleScraper(BaseScraper):
                 continue
 
             name_element = section.find("span", class_="meeting-type")
-            name = name_element and name_element.text
+            name = name_element.text
             date_element = section.find("span", class_="minutes-date")
-            date = date_element and date_element.text
+            date = date_element.text
             time_element = section.find("div", class_="meeting-time")
 
             if time_element:
-                for pattern in self.time_regexes:
-                    time_match = pattern.search(time_element.text)
-                    if time_match:
-                        time = time_match.group()
-                        break
+                time_match = self.time_pattern.search(time_element.text)
+                time = time_match.group()
 
             download_url = self.base_url + document_link.get("href")
             break
-
+        
         if not download_url:
-            print("Failed to find any meeting agendas")
             return None
+        
+        else:
+            scraper_return = ScraperReturn(name, date, time, self.base_url, download_url)
 
-        print("~~~")
-        scraper_return = ScraperReturn(name, date, time, self.base_url, download_url)
+            return scraper_return
 
-        print(
-            scraper_return.name,
-            scraper_return.date,
-            scraper_return.time,
-            scraper_return.webpage_url,
-            scraper_return.download_url,
-        )
 
-        return scraper_return
+
+if __name__ == "__main__":
+    scraper = BanyuleScraper()
+    scraper.scraper()
+
+            
+
+
+
+
