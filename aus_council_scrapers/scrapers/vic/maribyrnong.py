@@ -16,23 +16,23 @@ class MaribyrnongScraper(BaseScraper):
     def scraper(self) -> ScraperReturn | None:
         self.logger.info(f"Starting {self.council_name} scraper")
         webpage_url = "https://www.maribyrnong.vic.gov.au/About-us/Council-and-committee-meetings/Agendas-and-minutes"
-        response = self.fetch_with_requests(webpage_url)
-        if response.status_code != 200:
-            self.logger.error("Failed to fetch the main page.")
-            return None
+        response = self.fetcher.fetch_with_requests(webpage_url)
+        # if response.status_code != 200:
+            # self.logger.error("Failed to fetch the main page.")
+            # return None
 
-        soup = BeautifulSoup(response.content, "html.parser")
+        soup = BeautifulSoup(response, "html.parser")
         latest_meeting_link = soup.find(
             "a", class_="accordion-trigger minutes-trigger ajax-trigger"
         )["href"]
         self.logger.debug(f"Latest meeting link: {latest_meeting_link}")
 
-        meeting_response = self.fetch_with_requests(latest_meeting_link)
-        if meeting_response.status_code != 200:
-            self.logger.error("Failed to fetch the latest meeting page.")
-            return None
+        meeting_response = self.fetcher.fetch_with_requests(latest_meeting_link)
+        # if meeting_response.status_code != 200:
+            # self.logger.error("Failed to fetch the latest meeting page.")
+            # return None
 
-        soup = BeautifulSoup(meeting_response.content, "html.parser")
+        soup = BeautifulSoup(meeting_response, "html.parser")
         meeting_container = soup.find("div", class_="meeting-container")
         if not meeting_container:
             self.logger.error("Meeting container not found.")

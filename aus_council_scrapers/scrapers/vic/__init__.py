@@ -6,6 +6,7 @@ from aus_council_scrapers.scrapers.vic.glen_eira import GlenEiraScraper
 from aus_council_scrapers.scrapers.vic.greater_dandenong import GreaterDandenongScraper
 from aus_council_scrapers.scrapers.vic.hobsons_bay import HobsonsBayScraper
 from aus_council_scrapers.scrapers.vic.manningham import ManninghamScraper
+from aus_council_scrapers.scrapers.vic.maribyrnong import MaribyrnongScraper
 from aus_council_scrapers.scrapers.vic.melbourne import MelbourneScraper
 from aus_council_scrapers.scrapers.vic.merribek import MerribekScraper
 from aus_council_scrapers.scrapers.vic.port_phillip import PortPhilipScraper
@@ -14,7 +15,6 @@ from aus_council_scrapers.scrapers.vic.whitehorse import WhitehorseScraper
 from aus_council_scrapers.scrapers.vic.yarra import YarraScraper
 
 # BROKEN SCRAPERS
-# from council_scrapers.scrapers.vic.maribyrnong import MaribyrnongScraper
 
 # UNIMPLEMENTED SCRAPERS
 # from council_scrapers.scrapers.vic.manningham import ManninghamScraper
