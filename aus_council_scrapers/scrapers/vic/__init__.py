@@ -8,11 +8,14 @@ from aus_council_scrapers.scrapers.vic.hobsons_bay import HobsonsBayScraper
 from aus_council_scrapers.scrapers.vic.manningham import ManninghamScraper
 from aus_council_scrapers.scrapers.vic.maribyrnong import MaribyrnongScraper
 from aus_council_scrapers.scrapers.vic.melbourne import MelbourneScraper
+from aus_council_scrapers.scrapers.vic.melton import MeltonScraper
 from aus_council_scrapers.scrapers.vic.merribek import MerribekScraper
+from aus_council_scrapers.scrapers.vic.nillumbik import NillumbikScraper
 from aus_council_scrapers.scrapers.vic.port_phillip import PortPhilipScraper
 from aus_council_scrapers.scrapers.vic.stonnington import StonningtonScraper
 from aus_council_scrapers.scrapers.vic.whitehorse import WhitehorseScraper
 from aus_council_scrapers.scrapers.vic.yarra import YarraScraper
+from aus_council_scrapers.scrapers.vic.yarra_ranges import YarraRangesScraper
 
 # BROKEN SCRAPERS
 
