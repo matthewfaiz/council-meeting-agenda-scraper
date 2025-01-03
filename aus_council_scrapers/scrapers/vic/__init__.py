@@ -5,6 +5,7 @@ from aus_council_scrapers.scrapers.vic.darebin import DarebinScraper
 from aus_council_scrapers.scrapers.vic.glen_eira import GlenEiraScraper
 from aus_council_scrapers.scrapers.vic.greater_dandenong import GreaterDandenongScraper
 from aus_council_scrapers.scrapers.vic.hobsons_bay import HobsonsBayScraper
+from aus_council_scrapers.scrapers.vic.hume import HumeScraper
 from aus_council_scrapers.scrapers.vic.manningham import ManninghamScraper
 from aus_council_scrapers.scrapers.vic.maribyrnong import MaribyrnongScraper
 from aus_council_scrapers.scrapers.vic.melbourne import MelbourneScraper
